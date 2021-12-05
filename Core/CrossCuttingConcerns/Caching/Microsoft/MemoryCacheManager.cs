@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.RegularExpressions;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
-        IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public MemoryCacheManager()
         {

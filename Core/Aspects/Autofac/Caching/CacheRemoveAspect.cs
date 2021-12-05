@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Castle.DynamicProxy;
 using Core.CrossCuttingConcerns.Caching;
 using Core.Utilities.Interceptors;
@@ -11,8 +8,8 @@ namespace Core.Aspects.Autofac.Caching
 {
     public class CacheRemoveAspect : MethodInterception
     {
-        private string _pattern;
-        private ICacheManager _cacheManager;
+        private readonly string _pattern;
+        private readonly ICacheManager _cacheManager;
 
         public CacheRemoveAspect(string pattern)
         {

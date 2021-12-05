@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Castle.DynamicProxy;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Interceptors;
@@ -11,16 +9,17 @@ namespace Core.Aspects.Autofac.Validation
 {
     public class ValidationAspect : MethodInterception
     {
-        private Type _validatorType;
+        private readonly Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new System.Exception("Bu bir doğrulama sınıfı değil");
+                throw new Exception("Invalid validator type");
             }
 
             _validatorType = validatorType;
         }
+
         protected override void OnBefore(IInvocation invocation)
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType);

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Business.Constants;
 using Castle.DynamicProxy;
 using Core.Extensions;
@@ -13,14 +11,13 @@ namespace Business.BusinessAspects.Autofac
 {
     public class SecuredOperation : MethodInterception
     {
-        private string[] _roles;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly string[] _roles;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public SecuredOperation(params string[] roles)
         {
             _roles = roles;
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-
         }
 
         protected override void OnBefore(IInvocation invocation)

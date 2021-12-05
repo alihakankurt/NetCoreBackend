@@ -24,6 +24,17 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = _productService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
         [HttpGet("get-by-id")]
         public IActionResult GetById(int productId)
         {
